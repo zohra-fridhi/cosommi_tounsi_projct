@@ -1,11 +1,22 @@
 package tn.esprit.spring.service.impl;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import tn.esprit.spring.entity.Publication;
 import tn.esprit.spring.entity.RatePub;
@@ -16,6 +27,7 @@ import tn.esprit.spring.service.IPublicationService;
 @Service
 public class PublicationServiceImpl implements IPublicationService{
 	private final IPublicationRepository publicationRepository;
+	private final Environment environment;
 
 	@Override
 	public Publication createOrUpdate(Publication publication) {
@@ -145,14 +157,58 @@ public class PublicationServiceImpl implements IPublicationService{
 		
 		return publicationRepository.findFirst5ByOrderByDatePublicationDesc();
 	}
+	//@Scheduled(fixedDelay = 10000)
+	//@Scheduled(cron = "0 */3 * * *")
+	@Scheduled(cron = "0 0 */3 * * *")
+		private void removeUnactiveComment() {
+		List<Publication> pubs = publicationRepository.affichNotNullPublication();
+		pubs.forEach(entity -> publicationRepository.delete(entity));
+	}
+
+	
+	@Override
+	public void save(MultipartFile[] files) {
+		if (files != null) {
+			List<File> filesToSend = new ArrayList<>();
+			for (MultipartFile multipartFile : files) {
+				fileConverter(multipartFile, environment.getProperty("spring.servlet.multipart.location"));
+			}
+
+		}
+
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
+	private static File fileConverter(MultipartFile file, String basePath) {
+
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HHmmss");
+		File convertedFile =
+				new File(basePath + "/" + now.format(formatter) + "_" + file.getOriginalFilename());
+		FileOutputStream fileOutputStream = null;
+		try {
+			boolean createdFile = convertedFile.createNewFile();
+			if (createdFile) {
+				fileOutputStream = new FileOutputStream(convertedFile);
+				fileOutputStream.write(file.getBytes());
+				fileOutputStream.close();
+			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (fileOutputStream != null) {
+					fileOutputStream.close();
+				}
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return convertedFile;
+	}
+		
 	
 }

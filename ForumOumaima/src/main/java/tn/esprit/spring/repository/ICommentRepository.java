@@ -11,9 +11,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import tn.esprit.spring.entity.Comment;
+import tn.esprit.spring.entity.Publication;
 
 @Repository
 public interface ICommentRepository extends JpaRepository<Comment, Long>{
 	    Optional <List<Comment>> findByPublicationIdOrderByScoreDesc(Long id);
+	    
 	    
 }
