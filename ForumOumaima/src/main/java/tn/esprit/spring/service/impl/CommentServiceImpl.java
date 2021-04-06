@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import tn.esprit.spring.entity.Comment;
 import tn.esprit.spring.entity.RateCom;
 import tn.esprit.spring.repository.ICommentRepository;
 import tn.esprit.spring.service.ICommentService;
+import tn.esprit.spring.utility.BadWordException;
 import tn.esprit.spring.utility.BadWords;
 
 @AllArgsConstructor
@@ -21,13 +23,14 @@ public class CommentServiceImpl implements ICommentService{
 	private final ICommentRepository commentRepository;
     
 	@Override
-	public Comment createOrUpdate(Comment comment) {
+	public Comment createOrUpdate(Comment comment) throws BadWordException {
 		if (comment.getId()!=null) 
 		{
 				getById(comment.getId());
 		}
 		comment.setCreationDate(LocalDateTime.now());
-		BadWords.filterText(comment.getContent(),"oumaima");
+		BadWords.loadConfigs();
+		BadWords.filterText(comment.getContent());
 		return commentRepository.save(comment);
 	}
 
