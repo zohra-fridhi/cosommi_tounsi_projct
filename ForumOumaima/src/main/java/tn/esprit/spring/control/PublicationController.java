@@ -82,10 +82,11 @@ public class PublicationController {
     	return publicationService.news();
     }
     
-    @PostMapping("/uploadFiles")
-	public void save(@RequestParam("uploadedFiles") MultipartFile[] uploadedFiles) {
+    @PostMapping("/uploadFiles/{idPub}")
+	public void save(@RequestParam("uploadedFiles") MultipartFile[] uploadedFiles,
+			@PathVariable Long idPub) {
 
-		publicationService.save(uploadedFiles);
+		publicationService.save(uploadedFiles,idPub);
 	}
     @ExceptionHandler({ RedundantPublicationException.class })
     public ResponseEntity<String> handleRedundantException() {

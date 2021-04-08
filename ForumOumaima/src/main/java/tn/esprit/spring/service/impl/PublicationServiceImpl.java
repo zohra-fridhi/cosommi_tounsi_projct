@@ -45,11 +45,16 @@ public class PublicationServiceImpl implements IPublicationService{
 		if (publication.getId()!=null) 
 		{
 				getById(publication.getId());
+				
 		}
+		else {
+			if(checkForRedundantPublication(publication)) {
+				throw new RedundantPublicationException("the publication is redundant");
+			}
+		};
 		publication.setDatePublication(LocalDateTime.now());
-		if(checkForRedundantPublication(publication)) {
-			throw new RedundantPublicationException("the publication is redundant");
-		}
+		
+		
 		return publicationRepository.save(publication);
 	}
 
@@ -185,11 +190,16 @@ public class PublicationServiceImpl implements IPublicationService{
 
 	
 	@Override
-	public void save(MultipartFile[] files) {
+	public void save(MultipartFile[] files,Long idPub) {
 		if (files != null) {
-			List<File> filesToSend = new ArrayList<>();
+		Publication publication = getById(idPub);
 			for (MultipartFile multipartFile : files) {
-				fileConverter(multipartFile, environment.getProperty("spring.servlet.multipart.location"));
+			File file = fileConverter(multipartFile,
+						environment.getProperty("spring.servlet.multipart.location")
+						);
+			publication.setPicture(file.getName());
+			createOrUpdate(publication);
+			
 			}
 
 		}
@@ -201,8 +211,9 @@ public class PublicationServiceImpl implements IPublicationService{
 
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HHmmss");
+		String fileName= basePath + "/" + now.format(formatter) + "_" + file.getOriginalFilename();
 		File convertedFile =
-				new File(basePath + "/" + now.format(formatter) + "_" + file.getOriginalFilename());
+				new File(fileName);
 		FileOutputStream fileOutputStream = null;
 		try {
 			boolean createdFile = convertedFile.createNewFile();
