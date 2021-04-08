@@ -28,6 +28,5 @@ public class CategoriePublication implements Serializable{
 	private Long id;
 	private String title;
 	private String description;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="categoriePublications")
-	private Set<Publication> publications;
+
 }
