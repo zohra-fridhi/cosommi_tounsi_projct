@@ -28,7 +28,7 @@ public class CategoryController {
 	ICategoryService icategoryService;
 	
 	@PostMapping("/add")
-	public Category addCategory(@Valid @RequestBody Category c) {
+	public Category addCategory(@RequestBody Category c) {
 		return icategoryService.save(c);
 	}
 	@GetMapping("/display")

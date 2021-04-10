@@ -13,8 +13,8 @@ public interface IProductService {
 	Product addProduct(Product prod);
 	String deleteProduct(int id);
 	Product getProductById(int id);
-	List<Product> findProduitByBarcode(String barcode);
 	void AffectProductToCategory(int prodId, int catId);
 	List<String> findProductNameCategory(int catId);
 	List<Product> orderProductByPrice();
+	int getQuantityProduct(int prodId);
 }

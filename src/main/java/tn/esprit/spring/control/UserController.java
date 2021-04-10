@@ -26,4 +26,9 @@ public class UserController {
 	public List<User> getAllUsers(){
 		return userService.getUsers();
 	}
+@GetMapping("/adminLogin")
+public String adminValidation() {
+	return "Admin successfully logged in!!!!";
 }
+}
+

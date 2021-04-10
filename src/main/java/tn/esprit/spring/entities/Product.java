@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,9 +37,25 @@ public class Product implements Serializable {
 	String barCode;
 	@JsonIgnore 
 	@ManyToOne
-	@JoinColumn(name="FK_CATEGORY_ID")
+      @JoinColumn(name="FK_CATEGORY_ID")
 	private Category category;
-
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "products_orders",
+            joinColumns = {
+                    @JoinColumn(name = "product_id", referencedColumnName = "prodId",
+                            nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "order_id", referencedColumnName = "id",
+                            nullable = false, updatable = false)})
+	private Set<Order> orders;
+	
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 	public Category getCategory() {
 		return category;
 	}
@@ -83,7 +100,7 @@ public class Product implements Serializable {
 	}
 	public Product() {}
 	public Product(int prodId, String type, String name, float price, String description,
-			 String barCode,Category category) {
+			 String barCode,Category category,Set<Order> orders) {
 		super();
 		this.prodId = prodId;
 		this.type = type;
@@ -92,6 +109,7 @@ public class Product implements Serializable {
 		this.description = description;
 		this.barCode = barCode;
 		this.category = category;
+		this.orders=orders;
 	}
 
 }

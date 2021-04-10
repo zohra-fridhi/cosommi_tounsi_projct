@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,7 @@ public class ProductController {
 	
 	@GetMapping( "/products")
 	@ResponseBody
-	public  List<Product> retrieveProductByName(@Param(value = "name") String name,@Param(value = "type") String type) {
+	public  List<Product> retrieveProductByNameAndType(@Param(value = "name") String name,@Param(value = "type") String type) {
 		List<Product> products = new ArrayList<>();
 		products= productService.retrieveProductByNameAndType(name,type);
 		return products;}
@@ -85,6 +86,10 @@ public class ProductController {
 	@GetMapping("/Order")
 	public List<Product> getProductOrderByPrice(){
 		return productService.orderProductByPrice();
+	}
+	@GetMapping("/quantity")
+	public int getQuantProd(@RequestParam("prodId")int prodId) {
+		return productService.getQuantityProduct(prodId);
 	}
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -60,12 +60,6 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public List<Product> findProduitByBarcode(String barCode) {
-
-		return productRepository.findProduitByBarcode(barCode);
-	}
-
-	@Override
 	public void AffectProductToCategory(int prodId, int catId) {
 		Product p= productRepository.findById(prodId).get();
 		Category c=categoryRepository.findById(catId).get();
@@ -87,6 +81,12 @@ public class ProductService implements IProductService {
 	public List<Product> orderProductByPrice() {
 		
 		return productRepository.getProductsOrderByPriceAscendent();
+	}
+
+	@Override
+	public int getQuantityProduct(int prodId) {
+		
+		return productRepository.getQuantityOfProductId(prodId);
 	}
 
 }
