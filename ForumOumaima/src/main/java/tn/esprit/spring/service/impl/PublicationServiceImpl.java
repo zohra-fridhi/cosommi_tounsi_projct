@@ -271,6 +271,8 @@ public class PublicationServiceImpl implements IPublicationService{
 				.collect(Collectors.toList());
 	}
 	
-	
+	public List<Publication> getAllPublication(){
+		return publicationRepository.findAll();
+	}
 }
 

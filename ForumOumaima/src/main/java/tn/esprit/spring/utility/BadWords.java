@@ -96,9 +96,10 @@ public class BadWords {
 	    public static String filterText(String input) throws BadWordException {
 	        ArrayList<String> badWords = badWordsFound(input);
 	        if(badWords.size() > 0) {
-	           
-	      throw new BadWordException("This message was blocked because a bad word was found");
-	        }
+				for (String s : badWords) {
+					input = input.replaceAll(s, s.replaceAll(".", "*"));
+				}
+			}
 	        return input;
 	    }
 }

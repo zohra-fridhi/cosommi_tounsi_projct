@@ -30,7 +30,7 @@ public class CommentServiceImpl implements ICommentService{
 		}
 		comment.setCreationDate(LocalDateTime.now());
 		BadWords.loadConfigs();
-		BadWords.filterText(comment.getContent());
+		comment.setContent(BadWords.filterText(comment.getContent()));
 		return commentRepository.save(comment);
 	}
 

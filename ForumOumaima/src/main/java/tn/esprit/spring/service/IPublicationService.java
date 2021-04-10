@@ -17,4 +17,5 @@ public interface IPublicationService {
 	public List<Publication> news();
 	public void save(MultipartFile[] uploadedFiles,Long idPub);
 	List<Publication> suggestion(Long idUser);
+	List<Publication> getAllPublication();
 }

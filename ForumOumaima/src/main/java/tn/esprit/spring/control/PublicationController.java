@@ -39,6 +39,10 @@ public class PublicationController {
 	
 	private final IPublicationService publicationService;
 	
+	 @GetMapping
+	 public List<Publication> getAllPublication(){
+		 return publicationService.getAllPublication();
+	 }
 	@PostMapping("/create")
 	public Publication create(@RequestBody @Valid Publication publication) {
 		publicationService.createOrUpdate(publication);

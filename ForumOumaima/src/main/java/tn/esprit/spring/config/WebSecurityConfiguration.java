@@ -1,4 +1,4 @@
-package config;
+package tn.esprit.spring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 
 
@@ -32,7 +35,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.authorizeRequests()
 					.antMatchers("/api/auth/login/**").permitAll()
 					.antMatchers("/api/**").authenticated()
-					.and().httpBasic();
+					.and().httpBasic().and().logout();
 			http.csrf().disable();
 		}
 
@@ -46,5 +49,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //		public PasswordEncoder getPasswordEncoder() {
 //			return NoOpPasswordEncoder.getInstance();
 //		}
+		
+		
+	    
 	}
 
