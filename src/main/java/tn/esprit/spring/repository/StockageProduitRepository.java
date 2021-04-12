@@ -7,6 +7,7 @@ package tn.esprit.spring.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -30,4 +31,9 @@ public interface StockageProduitRepository extends JpaRepository<StockageProduit
 	// http://localhost:8081/produits/stockageProduits/search/byLieu?m1=A
 	@RestResource(path="/byLieu")
 	public List<StockageProduit> findByLieuStockageContains(@Param("m1") String  lieu );
+	
+	@Query("FROM StockageProduit sp WHERE sp.lieuStockage = :lieuStockage")
+	StockageProduit findBylieuStockage(@Param(value = "lieuStockage") String  lieuStockage);
+	
+	
 }

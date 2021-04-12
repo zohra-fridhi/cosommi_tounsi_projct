@@ -1,24 +1,32 @@
 package tn.esprit.spring.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
 
 
 
 
 @Entity
-
+@Table(name="Paiement")
 public class Paiement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long  idPaiement ;
+	
+	@Column	(name="nomCLient" ,length=8 , nullable=false)
 	 private String nomCLient ;
+	
+	@Positive
+	@Column	(name="Totale" , nullable=false)
 	 private Double Totale ;
 	
 	

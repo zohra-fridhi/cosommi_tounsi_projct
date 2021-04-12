@@ -39,6 +39,19 @@ public class User implements Serializable {
 	
 	
 	
+	@JoinTable(name = "T_USER_STOCKAGE")
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<StockageProduit> StockageProduit;
+	@JoinTable(name = "T_USER_FACTURE")
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Facture> Facture;
+	@JoinTable(name = "T_USER_PAIEMENT")
+	@OneToMany(cascade = CascadeType.ALL)
+	private Set<Paiement> Paiement;
+	
+	
+	
+	
 	public String getSexe() {
 		return sexe;
 	}

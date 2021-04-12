@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.StockageProduit;
 import tn.esprit.spring.repository.StockageProduitRepository;
+import tn.esprit.spring.util.FiltreBadWords;
 
 
 @Service
@@ -21,8 +22,10 @@ public class StockageProduitServiceImpl implements StockageProduitService{
 	StockageProduitRepository produitRepository;
 	
 	@Override
-	public StockageProduit saveProduit(StockageProduit p) {
-		return produitRepository.save(p);
+	public StockageProduit saveProduit(StockageProduit p) throws Exception {
+	FiltreBadWords.loadConfigs();
+	p.setNomProduit(FiltreBadWords.filterText(p.getNomProduit()));
+	return produitRepository.save(p);
 	}
 	
 	@Override
@@ -33,7 +36,10 @@ public class StockageProduitServiceImpl implements StockageProduitService{
 
 	@Override
 	public StockageProduit updateProduit(StockageProduit p) {
-		
+	//	List<String> badWords= FiltreBadWords.badWordsFound(p.getNomProduit());
+	//	System.out.println(badWords);
+	//	if (badWords != null)
+	//		return null ;
 		return produitRepository.save(p);
 	}
 
@@ -50,13 +56,19 @@ public class StockageProduitServiceImpl implements StockageProduitService{
 	}
 
 	
+	@Override
+	public Long countProduct() {
+		
+		return produitRepository.count();
+	}
 
-	
-	//@Override
-	//public List<StockageProduit> trierProduitsNomsPrix (String nomProduit , float prixAchat) {
-	
-	//	return produitRepository.trierProduitsNomsPrix();
- //	}
+	@Override
+	public int findBylieuStockage(String lieuStockage) {
+		
+		List<StockageProduit>listProductBylieuStockage =  produitRepository.findByLieuStockageContains(lieuStockage);
+		 int countProductBylieuStockage =  listProductBylieuStockage.size();
+		return countProductBylieuStockage ;
+	}
 	
 	
 	

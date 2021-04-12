@@ -9,10 +9,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entities.StockageProduit;
@@ -29,7 +31,7 @@ public class StockageProduitRESTController {
 	
     //   http://localhost:8081/produits/api/save
 	@RequestMapping(value="/save" ,method = RequestMethod.POST)
-	public StockageProduit createProduit(  @Valid  @RequestBody  StockageProduit produit) {
+	public StockageProduit createProduit(  @Valid  @RequestBody  StockageProduit produit) throws Exception {
 			return produitService.saveProduit(produit);
 	}
 	
@@ -60,8 +62,21 @@ public class StockageProduitRESTController {
 		return produitService.getProduit(id);
 	 }
 	
+	@GetMapping("/countProduct")
+	@ResponseBody
+	public Long countProduct(){
+		
+	return	  produitService.countProduct();
+		
+	}
 	
 	
-	
+	@GetMapping("/countProductbylieuStockage/{lieuStockage}")
+	@ResponseBody
+	public int countProductBylieuStockage(@PathVariable("lieuStockage") String lieuStockage ){
+		
+		return produitService.findBylieuStockage(lieuStockage);
+		
+	}
 
 }

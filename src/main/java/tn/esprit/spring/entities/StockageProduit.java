@@ -2,12 +2,13 @@ package tn.esprit.spring.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.*;
@@ -20,23 +21,37 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 
+@Table(name="StockageProduit")
+
 public class StockageProduit {	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long idProduit;
 	
-	
+	@Column	(name="nomProduit" ,length=70 , nullable=false)
 	private String nomProduit;
 	
-	@NotNull(message="")
+	@Positive
+    @Column	(name="prixAchat" , nullable=false)
 	private float prixAchat;
-	private float prixVente ;
-	private String lieuStockage;
-    private int quantityProduit;
-   @DateTimeFormat(pattern="yyyy-MM-dd")
-	@Temporal (TemporalType.DATE)
-	private Date dateCreation;
 	
+	@Positive
+    @Column	(name="prixVente" , nullable=false)
+	private float prixVente ;
+   @Size(min=3, max=60 )
+   @Column	(name="lieuStockage" , nullable=false)
+	private String lieuStockage;
+   @Positive
+   @Column	(name="quantityProduit" , nullable=false)
+    private int quantityProduit;
+  
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="DATE", nullable=true)
+	private Date dateCreation;
+	@PrePersist
+	private void onCreate() {
+		dateCreation = new Date();
+	}
 	
 	public StockageProduit() {
 		super();
