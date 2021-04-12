@@ -1,12 +1,17 @@
 package tn.esprit.spring.service.impl;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import tn.esprit.spring.entity.CategoriePublication;
 import tn.esprit.spring.entity.History;
+import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.IHistoryRepository;
 import tn.esprit.spring.service.IHistoryService;
 
@@ -37,4 +42,17 @@ public class HistoryServiceImpl implements IHistoryService{
 		throw new NoSuchElementException();
 	}
 
+	
+	@Override
+	public Set<CategoriePublication> getUserFavCategories(User user) {
+		List<History> histories = this.historyRepository.findFirst3ByUserIdOrderByRatingDesc(user.getId());
+		return histories
+				.stream()
+				.map(history -> history.getPublication().getCategoriePublications())
+				.collect(Collectors.toSet());
+	}
+	
+	
+	
+	
 }

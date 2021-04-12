@@ -24,6 +24,7 @@ import lombok.AllArgsConstructor;
 import tn.esprit.spring.entity.Comment;
 import tn.esprit.spring.entity.RateCom;
 import tn.esprit.spring.service.ICommentService;
+import tn.esprit.spring.utility.BadWordException;
 
 @AllArgsConstructor
 @RestController
@@ -34,7 +35,7 @@ public class CommentController {
 
 	
 	@PostMapping("/create")
-	public Comment create(@RequestBody @Valid Comment comment) {
+	public Comment create(@RequestBody @Valid Comment comment) throws BadWordException {
 		
 		commentService.createOrUpdate(comment);
 		return comment;
@@ -42,7 +43,7 @@ public class CommentController {
 
 	
 	@PutMapping("/update")
-	public Comment update(@RequestBody @Valid Comment comment) {
+	public Comment update(@RequestBody @Valid Comment comment) throws BadWordException {
 		if (comment.getId()==null) {
 			throw new NoSuchElementException();
 		}
@@ -96,5 +97,10 @@ public class CommentController {
 	    }
 	    return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
 	 }
+	@ExceptionHandler(BadWordException.class)
+	 public ResponseEntity badWordException() {
+		return new ResponseEntity<>("there's bad Words", HttpStatus.BAD_REQUEST) ; 
+    }
+	
 	
 }

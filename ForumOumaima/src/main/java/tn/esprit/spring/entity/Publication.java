@@ -40,7 +40,7 @@ public class Publication implements Serializable{
 	private String title;
 	@Size(max=150)
 	private String content;
-	@Pattern(regexp="https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)")
+	//@Pattern(regexp="https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)")
 	private String picture;
 	private LocalDateTime datePublication;
 	private Float score=(float) 0;

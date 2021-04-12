@@ -20,6 +20,13 @@ import lombok.Setter;
 @Table(name = "History")
 public class History implements Serializable{
 
+	public History(User user, RatePub rate, Publication idPublication) {
+		this.user = user;
+		this.rating = rate;
+		this.publication = idPublication;
+		this.rateDate = LocalDate.now();
+	}
+
 	private static final long serialVersionUID = 5855479551853852092L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
