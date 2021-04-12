@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.service;
+package tn.esprit.spring.service;
 
 
 
@@ -6,7 +6,7 @@ package tn.esprit.spring.produits.service;
 import java.util.List;
 
 
-import tn.esprit.spring.produits.entities.StockageProduit;
+import tn.esprit.spring.entities.StockageProduit;
 
 public interface StockageProduitService {
 	StockageProduit saveProduit(StockageProduit p);

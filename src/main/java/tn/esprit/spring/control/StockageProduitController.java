@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.controllers;
+package tn.esprit.spring.control;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.produits.entities.StockageProduit;
-import tn.esprit.spring.produits.service.StockageProduitService;
+import tn.esprit.spring.entities.StockageProduit;
+import tn.esprit.spring.service.StockageProduitService;
 
 @Controller
 

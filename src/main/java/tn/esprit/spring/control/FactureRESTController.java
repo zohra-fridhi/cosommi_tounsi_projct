@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.restcontrollers;
+package tn.esprit.spring.control;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.produits.entities.Facture;
+import tn.esprit.spring.entities.Facture;
 
-import tn.esprit.spring.produits.service.FactureService;
+import tn.esprit.spring.service.FactureService;
 
 @RestController
 @RequestMapping("/apiF")

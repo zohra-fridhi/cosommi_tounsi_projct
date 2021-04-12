@@ -1,8 +1,8 @@
-package tn.esprit.spring.produits.service;
+package tn.esprit.spring.service;
 
 import java.util.List;
 
-import tn.esprit.spring.produits.entities.Paiement;
+import tn.esprit.spring.entities.Paiement;
 
 
 

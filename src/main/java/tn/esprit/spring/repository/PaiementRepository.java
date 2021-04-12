@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.repos;
+package tn.esprit.spring.repository;
 
 
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import tn.esprit.spring.produits.entities.Paiement;
+import tn.esprit.spring.entities.Paiement;
 
 
 

@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.restcontrollers;
+package tn.esprit.spring.control;
 
 
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.produits.entities.StockageProduit;
-import tn.esprit.spring.produits.service.StockageProduitService;
+import tn.esprit.spring.entities.StockageProduit;
+import tn.esprit.spring.service.StockageProduitService;
 
 @RestController  // Pour définir un controlleur qui va fonctionner au mode rest 
 @RequestMapping("/api")

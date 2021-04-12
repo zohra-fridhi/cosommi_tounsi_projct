@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.repos;
+package tn.esprit.spring.repository;
 
 
 
@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import tn.esprit.spring.produits.entities.StockageProduit;
+import tn.esprit.spring.entities.StockageProduit;
 
 
 

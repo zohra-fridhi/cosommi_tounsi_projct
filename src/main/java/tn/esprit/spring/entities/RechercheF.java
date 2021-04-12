@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.entities;
+package tn.esprit.spring.entities;
 
 public enum RechercheF {
 	

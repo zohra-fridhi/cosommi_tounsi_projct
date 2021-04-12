@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.entities;
+package tn.esprit.spring.entities;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.service;
+package tn.esprit.spring.service;
 
 
 import java.util.List;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 
 
-import tn.esprit.spring.produits.entities.StockageProduit;
-import tn.esprit.spring.produits.repos.StockageProduitRepository;
+import tn.esprit.spring.entities.StockageProduit;
+import tn.esprit.spring.repository.StockageProduitRepository;
 
 
 @Service

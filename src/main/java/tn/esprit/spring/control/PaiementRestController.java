@@ -1,4 +1,4 @@
-package tn.esprit.spring.produits.restcontrollers;
+package tn.esprit.spring.control;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.produits.entities.Paiement;
+import tn.esprit.spring.entities.Paiement;
 
-import tn.esprit.spring.produits.service.PaiementService;
+import tn.esprit.spring.service.PaiementService;
 
 @RestController
 @RequestMapping("/apiPai")
