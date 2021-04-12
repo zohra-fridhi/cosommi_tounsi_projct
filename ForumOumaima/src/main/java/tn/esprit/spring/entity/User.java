@@ -52,6 +52,8 @@ public class User implements Serializable{
 	private String cin;
 	@Enumerated(EnumType.STRING)
 	Role role;
+	private double latitude;
+	private double longitude;
 	
 	
 	
