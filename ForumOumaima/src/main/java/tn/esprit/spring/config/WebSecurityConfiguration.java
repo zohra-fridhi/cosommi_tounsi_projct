@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -32,10 +33,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		protected void configure(HttpSecurity http) throws Exception {
 
 			http
-					.authorizeRequests()
+					.authorizeRequests() 
 					.antMatchers("/api/auth/login/**").permitAll()
-					.antMatchers("/api/**").authenticated()
-					.and().httpBasic().and().logout();
+			   	.antMatchers("/api/**").authenticated()
+					.and().httpBasic();
 			http.csrf().disable();
 		}
 
@@ -45,11 +46,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			auth.userDetailsService(userDetailsService);
 		}
 
-//		@Bean
-//		public PasswordEncoder getPasswordEncoder() {
-//			return NoOpPasswordEncoder.getInstance();
-//		}
-		
+
 		
 	    
 	}

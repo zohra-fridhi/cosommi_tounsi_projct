@@ -15,9 +15,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
  public void configureMessageBroker(MessageBrokerRegistry config) {
      /*
       * enable a simple memory-based message broker to carry the chat messages
-      * back to the client on destinations prefixed with /chat
+      * back to the client on destinations prefixed with /message
       * */
-     config.enableSimpleBroker("/chat");
+     config.enableSimpleBroker("/message");
      /*
      * designates the /app prefix for messages that are bound for
      * methods annotated with @MessageMapping
@@ -28,12 +28,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
  @Override
  public void registerStompEndpoints(StompEndpointRegistry registry) {
      /*
-     * Register /chat-websocket endpoint,
+     * Register /socket endpoint,
      * setAllowedOriginPatterns is used to prevent CORS issue when using the
      * Angular application as a client
      *
      * */
-     registry.addEndpoint("/chat-websocket").setAllowedOriginPatterns("*")
+     registry.addEndpoint("/socket").setAllowedOriginPatterns("*")
              .withSockJS();
  }
 }

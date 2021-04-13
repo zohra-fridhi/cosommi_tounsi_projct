@@ -23,6 +23,11 @@ public class CommentServiceImpl implements ICommentService{
 	private final ICommentRepository commentRepository;
     
 	@Override
+	public List<Comment> getAllComment() {
+		return commentRepository.findAll();
+	}
+	
+	@Override
 	public Comment createOrUpdate(Comment comment) throws BadWordException {
 		if (comment.getId()!=null) 
 		{
@@ -78,6 +83,8 @@ public class CommentServiceImpl implements ICommentService{
 		 
 		
 	}
+
+	
 	
 	
 	

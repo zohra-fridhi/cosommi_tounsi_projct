@@ -17,5 +17,6 @@ public interface ICommentService {
 	Comment getById (Long id) throws NoSuchElementException;
 	List<Comment> findByPublicationIdOrderByScoreDesc(Long id);
 	 Comment rate(Long idComment, Long idUser, RateCom rate);
+	public List<Comment> getAllComment();
 	
 }
