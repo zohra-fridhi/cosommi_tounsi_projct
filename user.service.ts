@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {User} from './user';
-import { environment } from 'src/environments/environment';
+
+const API_URL = 'http://localhost:8084/api/test/';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class UserService{
-    private apiServerUrl = environment.apiBaseUrl;
-    constructor(private http: HttpClient){}
+export class UserService {
 
-    public getUsers(): Observable<User[]>{
-        return this.http.get<User[]>('${this.apiServerUrl}/user/admin/all');
-    }
-    public addUser(user : User): Observable<User>{
-        return this.http.post<User>('${this.apiServerUrl}/user/admin/add', user);
-    }
-    public updateUser(user : User): Observable<User>{
-        return this.http.put<User>('${this.apiServerUrl}/user/admin/update', user);
-    }
-    public deleteUser(userId : number): Observable<void>{
-        return this.http.delete<void>('${this.apiServerUrl}/user/admin/delete/${userId}');
-    }
+  constructor(private http: HttpClient) { }
+
+  getPublicContent(): Observable<any> {
+    return this.http.get(API_URL + 'all', { responseType: 'text' });
+  }
+
+  getUserBoard(): Observable<any> {
+    return this.http.get(API_URL + 'user', { responseType: 'text' });
+  }
+
+  getDeliveryManBoard(): Observable<any> {
+    return this.http.get(API_URL + 'deliveryman', { responseType: 'text' });
+  }
+
+  getAdminBoard(): Observable<any> {
+    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+  }
+
 }
+
