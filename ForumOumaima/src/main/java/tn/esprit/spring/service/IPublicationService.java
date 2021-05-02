@@ -18,4 +18,5 @@ public interface IPublicationService {
 	public void save(MultipartFile[] uploadedFiles,Long idPub);
 	List<Publication> suggestion(Long idUser);
 	List<Publication> getAllPublication();
+	public List<Publication> getPubBycategorie(Long id);
 }

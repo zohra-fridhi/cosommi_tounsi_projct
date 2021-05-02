@@ -1,6 +1,8 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.type.CalendarDateType;
 
 import com.sun.istack.NotNull;
 
@@ -52,6 +56,8 @@ public class User implements Serializable{
 	private String cin;
 	@Enumerated(EnumType.STRING)
 	Role role;
+	private Date birthday;
+	
 	
 	
 	

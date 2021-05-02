@@ -39,6 +39,8 @@ public class Comment implements Serializable{
 	@NotBlank(message="the content is required")
 	@Size(max=150)
 	private String content;
+	@ManyToOne(targetEntity=User.class)
+	private User user;
 	private LocalDateTime creationDate;
 	private Integer score=0;
 @ElementCollection
@@ -46,5 +48,6 @@ public class Comment implements Serializable{
 	
 	@ManyToOne(targetEntity=Publication.class)
 	Publication publication;
+	
 
 }

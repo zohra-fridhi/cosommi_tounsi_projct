@@ -32,12 +32,12 @@ public class BadWords {
 	                String[] content = null;
 	               
 	                    content = line.split(",");
-	                    if(content.length == 0) {
+	                    if(content.length == 0) { // ligne vide
 	                        continue;
 	                    }
 	                   
-	                    String word=content[0];
-						if(word.length() > largestWordLength) {
+	                    String word=content[0]; //1ere colonne
+						if(word.length() > largestWordLength) { // but savoir le largestWordLength
 	                        largestWordLength = word.length();
 	                    }
 	                    words.add(word.replaceAll(" ", ""));
@@ -76,8 +76,8 @@ public class BadWords {
 	        ArrayList<String> badWords = new ArrayList<>();
 	        input = input.toLowerCase().replaceAll("[^a-zA-Z]", "");
 
-	        // iterate over each letter in the word
-	        for(int start = 0; start < input.length(); start++) {
+	        // iterate over each letter in the word 
+	        for(int start = 0; start < input.length(); start++) { //compteur 1 in first letter and offset incriment
 	            // from each letter, keep going to find bad words until either the end of the sentence is reached, or the max word length is reached. 
 	            for(int offset = 1; offset < (input.length()+1 - start) && offset < largestWordLength; offset++)  {
 	                String wordToCheck = input.substring(start, start + offset);

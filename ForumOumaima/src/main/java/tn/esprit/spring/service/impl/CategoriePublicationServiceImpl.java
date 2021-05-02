@@ -1,6 +1,7 @@
 package tn.esprit.spring.service.impl;
 
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import tn.esprit.spring.entity.CategoriePublication;
+import tn.esprit.spring.entity.Publication;
 import tn.esprit.spring.repository.ICategoriePublicationRepository;
 import tn.esprit.spring.service.ICategoriePublicationService;
 
@@ -38,7 +40,10 @@ public class CategoriePublicationServiceImpl implements ICategoriePublicationSer
 		throw new NoSuchElementException();
 	}
 
-	
+	public List<CategoriePublication> getAllCategorie(){
+		return categoriePublicationRepository.findAll();
+	}
+	 
 	
 	
 }

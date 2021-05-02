@@ -274,5 +274,11 @@ public class PublicationServiceImpl implements IPublicationService{
 	public List<Publication> getAllPublication(){
 		return publicationRepository.findAll();
 	}
+	
+	public List<Publication> getPubBycategorie(Long id){
+		CategoriePublication categoriePublication = new CategoriePublication();
+	 categoriePublication.setId(id);
+	return publicationRepository.findByCategoriePublicationsOrderByScoreDesc(categoriePublication);
+	}
 }
 

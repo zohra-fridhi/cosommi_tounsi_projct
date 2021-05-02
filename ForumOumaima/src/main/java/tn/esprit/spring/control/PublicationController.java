@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,11 +35,20 @@ import tn.esprit.spring.service.IPublicationService;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/publication")
 public class PublicationController {
 	
 	private final IPublicationService publicationService;
 	
+	@GetMapping("/getPubById/{id}")
+	public Publication getPubById(@PathVariable("id") Long id) {
+		return publicationService.getById(id);
+	}
+	@GetMapping("/getPubBYCategorie/{id}")
+	public List <Publication> getPubByCategorie(@PathVariable("id") Long id){
+		return publicationService.getPubBycategorie(id);
+	}
 	 @GetMapping
 	 public List<Publication> getAllPublication(){
 		 return publicationService.getAllPublication();

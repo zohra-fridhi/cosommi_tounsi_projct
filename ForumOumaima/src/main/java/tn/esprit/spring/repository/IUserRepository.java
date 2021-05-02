@@ -11,7 +11,6 @@ import tn.esprit.spring.entity.User;
 public interface IUserRepository extends JpaRepository<User, Long>{
 
 	Optional<User> findByLogin(String username);
-
 	
 
 }

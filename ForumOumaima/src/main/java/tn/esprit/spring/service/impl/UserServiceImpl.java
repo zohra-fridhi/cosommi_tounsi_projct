@@ -34,5 +34,10 @@ public class UserServiceImpl implements IUserService{
 		if (user.isPresent()) return user.get();
 		throw new NoSuchElementException();
 	}
+	
+	@Override
+	public User getUserByUsername(String username) {
+		return userRepository.findByLogin(username).orElse(null);
+	}
 
 }

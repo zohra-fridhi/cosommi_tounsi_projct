@@ -33,7 +33,10 @@ import tn.esprit.spring.utility.BadWordException;
 public class CommentController {
 
 	private final ICommentService commentService;
-
+	@GetMapping("/getbyPostId/{id}")
+	public List <Comment> getCommentByPublication(@PathVariable("id") Long id){
+		return commentService.findByPublicationIdOrderByScoreDesc(id);
+	}
 
 	 @GetMapping
 	 public List<Comment> getAllPublication(){
