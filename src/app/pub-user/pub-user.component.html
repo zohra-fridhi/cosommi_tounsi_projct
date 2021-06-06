@@ -1,0 +1,20 @@
+<table class="table">
+  <tr class="success"><th><h1>Publicity List</h1></th>
+  </tr>
+</table>
+<table class="table">
+  <tr class="success"><th>ID</th><th>Image</th>
+    <th>Nombre vue</th><th>Cout</th><th>StartAge Cible</th><th>EndAge Cible</th>
+    <th>GenderCible</th></tr>
+  <tbody>
+  <tr *ngFor="let p of pub">
+    <td class="table-active">{{p.pubId}}</td>
+    <td> <img [src]="'data:image/jpg;base64,'+p.image | safeHtml" width="150px"/></td>
+    <td class="table-warning">{{p.nbrVue}}</td>
+    <td class="table-warning">{{p.cout}}</td>
+    <td class="table-warning">{{p.startAgeCible}}</td>
+    <td class="table-warning">{{p.endAgeCible}}</td>
+    <td class="table-warning">{{p.genderCible}}</td>
+  </tr>
+  </tbody>
+</table>

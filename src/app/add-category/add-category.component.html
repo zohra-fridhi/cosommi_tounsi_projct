@@ -1,0 +1,11 @@
+<div class="container">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label>Wording </label>
+      <input type="text" name="wording" class="form-control" [(ngModel)]="categ.wording" #w= "ngModel" required >
+      <div class="alert alert-danger" *ngIf="w.invalid && w.touched">Wording is required</div>
+      <button class="btn btn-warning" [disabled]="f.invalid" (click)="addCateg(categ)">save</button>
+    </div>
+  </form>
+
+    </div>

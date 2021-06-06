@@ -1,0 +1,26 @@
+<table class="table">
+  <tr class="success"><th><h1>Product List</h1></th><th><button (click)="Order()" type="button" class="btn btn-secondary">Order Products</button></th>
+  </tr>
+</table>
+<form class="form-inline my-2 my-lg-0">
+<input class="form-control mr-sm-2" type="search" placeholder="Enter Name To Search" name="name" [(ngModel)]="name" (ngModelChange)="Search()">
+</form>
+<table class="table">
+  <tr class="success"><th>ID</th><th>Type</th><th>Name</th><th>Price</th><th>Description</th>
+  <th>BarCode</th><th></th><th></th></tr>
+<tbody>
+<tr *ngFor="let p of prod">
+  <td class="table-active">{{p.prodId}}</td>
+  <td class="table-primary">{{p.type}}</td>
+  <td class="table-secondary">{{p.name}}</td>
+  <td class="table-success">{{p.price}}</td>
+  <td class="table-danger">{{p.description}}</td>
+  <td class="table-warning">{{p.barCode}}</td>
+    <td><button (click)="deleteProductByID(p.prodId)" type="button" class="btn btn-outline-danger">DELETE</button></td>
+    <td><button (click)="goToUpdateProduct(p.prodId)" type="button" class="btn btn-outline-primary">UPDATE</button></td>
+</tr>
+</tbody>
+</table>
+
+
+

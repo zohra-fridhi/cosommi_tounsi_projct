@@ -1,0 +1,23 @@
+<table class="table">
+  <tr class="success"><th><h1>Publicity List</h1></th>
+  </tr>
+</table>
+<table class="table">
+  <tr class="success"><th>ID</th><th>Image</th><th>Start Date</th><th>End Date</th>
+    <th>Cout</th><th>StartAge Cible</th><th>EndAge Cible</th>
+    <th>GenderCible</th><th></th><th></th><th></th></tr>
+  <tbody>
+  <tr *ngFor="let p of Pub">
+    <td class="table-active">{{p.pubId}}</td>
+    <td> <img [src]="'data:image/jpg;base64,'+p.image | safeHtml" width="150px"/></td>
+    <td class="table-warning">{{p.startDate}}</td>
+    <td class="table-warning">{{p.endDate}}</td>
+    <td class="table-warning">{{p.cout}}</td>
+    <td class="table-warning">{{p.startAgeCible}}</td>
+    <td class="table-warning">{{p.endAgeCible}}</td>
+    <td class="table-warning">{{p.genderCible}}</td>
+    <td><button (click)="deletePubByID(p.pubId)" type="button" class="btn btn-outline-danger">DELETE</button></td>
+    <td><button (click)="goToUpdatePub(p.pubId)" type="button" class="btn btn-outline-primary">UPDATE</button></td>
+  </tr>
+  </tbody>
+</table>

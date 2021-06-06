@@ -1,0 +1,12 @@
+<div class="card border-primary mb-3" style="max-width: 18rem;">
+  <div *ngFor="let c of cat ">
+  <div class="card-header">{{c.catId}}</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">{{c.wording}}</h5>
+  </div>
+    <table>
+      <td><button (click)="goToProductName(c.catId)" class="btn btn-outline-primary" type="button"> Product Name</button></td>
+      <td><button (click)="deleteCatByID(c.catId)" class="btn btn-outline-danger" type="button"> Delete</button></td>
+    </table>
+  </div>
+</div>

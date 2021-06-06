@@ -1,0 +1,27 @@
+<div class="container">
+  <h3>Update Publicity</h3>
+  <form >
+    <img [src]="'data:image/jpg;base64,'+pub.image | safeHtml" width="150px"/>
+    <div class="form-group">
+      <label>Start Date </label>
+      <input type="date" name="startDate" class="form-control" [(ngModel)]="pub.startDate">
+    </div>
+    <div class="form-group">
+      <label>End Date </label>
+      <input type="date" name="endDate" class="form-control" [(ngModel)]="pub.endDate">
+    </div>
+    <div class="form-group">
+      <label>StartAge Cible </label>
+      <input type="text" name="startAgeCible" class="form-control" [(ngModel)]="pub.startAgeCible">
+    </div>
+    <div class="form-group">
+      <label>EndAge Cible </label>
+      <input type="text" name="endAgeCible" class="form-control" [(ngModel)]="pub.endAgeCible">
+    </div>
+    <div class="form-group">
+      <label>Gender Cible </label>
+      <input type="text" name="genderCible" class="form-control" [(ngModel)]="pub.genderCible">
+    </div>
+    <button (click)="onSubmit()" class="btn btn-warning">Submit</button>
+  </form>
+</div>

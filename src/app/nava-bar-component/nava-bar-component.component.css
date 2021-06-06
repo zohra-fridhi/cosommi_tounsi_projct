@@ -1,0 +1,6 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+.imgBG{
+  background-image: url('./../../assets/images/consommi.jpg');
+  width: 150px;
+  height: 50px;
+}

@@ -1,0 +1,18 @@
+<div class="container">
+  <form >
+    <div class="form-group">
+      <label>Start Age Cible </label>
+      <input type="number" name="startAgeCible" class="form-control" [(ngModel)]="pub.startAgeCible" >
+    </div>
+    <div class="form-group">
+      <label>End Age Cible </label>
+      <input type="number" name="endAgeCible" class="form-control" [(ngModel)]="pub.endAgeCible">
+    </div>
+    <div class="form-group">
+      <label>Gender Cible </label>
+      <input type="text" name="genderCible" class="form-control" [(ngModel)]="pub.genderCible">
+    </div>
+
+    <button (click)="goTocount(pub.startAgeCible,pub.endAgeCible,pub.genderCible)" class="btn btn-warning">Count</button>
+  </form>
+</div>

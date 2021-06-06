@@ -1,0 +1,16 @@
+<div class="row">
+  <div *ngFor="let u of user">
+  <div class="col-md-3">
+<div class="card" style="width: 18rem;">
+
+  <img class="card-img-top" src="../../assets/images/user.png" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{u.lasName}}</h5>
+    <p class="card-text">{{u.age}}</p>
+    <p class="card-text">{{u.sexe}}</p>
+    <button  (click)="getPubUser(u.age)" type="button" class="btn btn-outline-primary">Publicities</button>
+  </div>
+  </div>
+</div>
+</div>
+</div>

@@ -24,9 +24,12 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "integrationTemplate"
+    }
+  },
+  "defaultProject": "integrationTemplate",
+  "cli": {
+    "analytics": "2e86b67f-efe2-407a-aa0b-0c6ffc95f299"
+  }
 }
